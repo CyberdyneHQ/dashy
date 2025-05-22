@@ -57,10 +57,9 @@ const HomeMixin = {
     getSubPageTheme() {
       if (!this.pageId || this.pageId === 'home') {
         return null;
-      } else {
-        const themeStoreKey = `${localStorageKeys.THEME}-${this.pageId}`;
-        return localStorage[themeStoreKey] || null;
       }
+      const themeStoreKey = `${localStorageKeys.THEME}-${this.pageId}`;
+      return localStorage[themeStoreKey] || null;
     },
     setTheme() {
       const theme = this.getSubPageTheme() || GetTheme();
@@ -137,14 +136,12 @@ const HomeMixin = {
     /* Returns true if there is more than 1 sub-result visible during searching */
     checkIfResults() {
       if (!this.sections) return false;
-      else {
-        let itemsFound = true;
-        this.sections.forEach((section) => {
-          if (section.widgets && section.widgets.length > 0) itemsFound = false;
-          if (this.filterTiles(section.items, this.searchValue).length > 0) itemsFound = false;
-        });
-        return itemsFound;
-      }
+      let itemsFound = true;
+      this.sections.forEach((section) => {
+        if (section.widgets && section.widgets.length > 0) itemsFound = false;
+        if (this.filterTiles(section.items, this.searchValue).length > 0) itemsFound = false;
+      });
+      return itemsFound;
     },
     /* If user has a background image, then generate CSS attributes */
     getBackgroundImage() {
