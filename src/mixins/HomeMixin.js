@@ -29,7 +29,7 @@ const HomeMixin = {
       return this.$store.state.modalOpen;
     },
     pageId() {
-      return (this.subPageInfo && this.subPageInfo.pageId) ? this.subPageInfo.pageId : 'home';
+      return (this.subPageInfo?.pageId) ? this.subPageInfo.pageId : 'home';
     },
   },
   data: () => ({
@@ -47,7 +47,7 @@ const HomeMixin = {
   methods: {
     async getConfigForRoute() {
       this.$store.commit(Keys.SET_CURRENT_SUB_PAGE, this.subPageInfo);
-      if (this.subPageInfo && this.subPageInfo.confPath) { // Get config for sub-page
+      if (this.subPageInfo?.confPath) { // Get config for sub-page
         await this.$store.dispatch(Keys.INITIALIZE_MULTI_PAGE_CONFIG, this.subPageInfo.confPath);
       } else { // Otherwise, use main config
         this.$store.commit(Keys.USE_MAIN_CONFIG);
@@ -91,10 +91,10 @@ const HomeMixin = {
       if (!this.sections) return false;
       let isNeeded = false; // Will be set to true if prefix found in icon name
       this.sections.forEach((section) => {
-        if (section && section.icon && section.icon.includes(prefix)) isNeeded = true;
-        if (section && section.items) {
+        if (section?.icon?.includes(prefix)) isNeeded = true;
+        if (section?.items) {
           section.items.forEach((item) => {
-            if (item.icon && item.icon.includes(prefix)) isNeeded = true;
+            if (item.icon?.includes(prefix)) isNeeded = true;
           });
         }
       });
@@ -145,7 +145,7 @@ const HomeMixin = {
     },
     /* If user has a background image, then generate CSS attributes */
     getBackgroundImage() {
-      if (this.appConfig && this.appConfig.backgroundImg) {
+      if (this.appConfig?.backgroundImg) {
         return `background: url('${this.appConfig.backgroundImg}');background-size:cover;`;
       }
       return '';
