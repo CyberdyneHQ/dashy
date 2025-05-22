@@ -67,7 +67,7 @@ const makeMetaTags = (defaultTitle) => ({
 const makeSubConfigPath = (rawPath) => {
   if (!rawPath) return '';
   if (rawPath.startsWith('/') || rawPath.startsWith('http')) return rawPath;
-  else return `/${rawPath}`;
+  return `/${rawPath}`;
 };
 
 /* For each additional config file, create routes for home, minimal and workspace views */

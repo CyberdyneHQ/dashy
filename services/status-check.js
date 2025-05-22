@@ -68,12 +68,12 @@ const makeRequest = (url, options, render) => {
         };
         results.message = makeMessageText(results);
         return results;
-      } else { // Request failed
-        return {
-          successStatus: false,
-          message: error.response ? makeErrorMessage2(error.response) : makeErrorMessage(error),
-        };
       }
+      // Request failed
+      return {
+        successStatus: false,
+        message: error.response ? makeErrorMessage2(error.response) : makeErrorMessage(error),
+      };
     }).then((results) => {
       // Request completed (either successfully, or failed) - render results
       render(JSON.stringify(results));

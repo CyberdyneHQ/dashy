@@ -30,9 +30,8 @@ class KeycloakAuth {
           if (auth) {
             this.storeKeycloakInfo();
             return resolve();
-          } else {
-            return reject(new Error('Not authenticated'));
           }
+          return reject(new Error('Not authenticated'));
         })
         .catch((reason) => reject(reason));
     });
